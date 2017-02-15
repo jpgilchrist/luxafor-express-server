@@ -18,7 +18,6 @@ const router = express.Router();
 router.route('/luxafor')
     .post((req, res) => {
         const {action, color, speed, repeat, target, type} = req.body;
-        console.log('received request', action, color, speed, repeat, target, type);
 
         var status;
         switch (action) {
@@ -38,9 +37,7 @@ router.route('/luxafor')
                 status = device.off();
                 break;
         }
-
-        console.log('status: ' + status);
-
+        
         if (status) {
             if (status.message) {
                 res.json({status: status.message});
