@@ -35,24 +35,44 @@ router.route('/luxafor')
         var status;
         switch (action) {
             case "setColor":
-                status = device.setColor(color, target);
+                status = setColor(color, target);
                 break;
             case "fadeTo":
-                status = device.fadeTo(color, target, speed);
+                status = fadeTo(color, target, speed || 20);
                 break;
             case "flash":
-                status = device.flash(color, speed, repeat);
+                status = flash(color, speed || 180, repeat || 5);
                 break;
             case "wave":
-                status = device.wave(color, type, speed, repeat);
+                status = wave(color, type ||, speed, repeat);
                 break;
             case "off":
-                status = device.off();
+                status = off();
                 break;
         }
 
         res.json({status: status.message});
     });
+
+function setColor(color, target) {
+    device.setColor(color, target);
+}
+
+function fadeTo(color, target, speed = 20) {
+    device.fadeTo(color, target, speed);
+}
+
+function flash(color, speed = 180, repeat = 5) {
+    device.flash(color, speed, repeat);
+}
+
+function wave(color, type = 2, speed = 90, repeat = 5) {
+    device.wave(color, type, speed, repeat);
+}
+
+function off() {
+    device.off();
+}
 
 app.use('/api', router);
 app.listen(port);
