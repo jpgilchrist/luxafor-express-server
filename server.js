@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+// api documentation for luxafor: https://www.npmjs.com/package/luxafor-api
 const Luxafor = require('luxafor-api');
 const device = new Luxafor();
 device.setColor('#FFF');
@@ -37,7 +38,7 @@ router.route('/luxafor')
                 status = device.off();
                 break;
         }
-        
+
         if (status) {
             if (status.message) {
                 res.json({status: status.message});
