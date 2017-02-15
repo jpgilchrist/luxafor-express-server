@@ -51,6 +51,8 @@ router.route('/luxafor')
                 break;
         }
 
+	console.log('status: ' + status);
+
         if (status) {
             if (status.message) {
                 res.json({status: status.message});
