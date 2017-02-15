@@ -7,9 +7,9 @@ const bodyParser = require('body-parser');
 
 // api documentation for luxafor: https://www.npmjs.com/package/luxafor-api
 const Luxafor = require('luxafor-api');
-var device = new Luxafor();
+var luxafor = new Luxafor();
 
-device.setColor('#FFF');
+luxafor.setColor('#FFF');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -24,33 +24,33 @@ router.route('/luxafor')
         var status;
         switch (action) {
             case "setColor":
-                status = device.setColor(color, target);
+                status = luxafor.setColor(color, target);
                 break;
             case "fadeTo":
-                status = device.fadeTo(color, target, speed);
+                status = luxafor.fadeTo(color, target, speed);
                 break;
             case "flash":
-                status = device.flash(color, speed, repeat);
+                status = luxafor.flash(color, speed, repeat);
                 break;
             case "wave":
-                status = device.wave(color, type, speed, repeat);
+                status = luxafor.wave(color, type, speed, repeat);
                 break;
             case "off":
-                status = device.off();
+                status = luxafor.off();
             case "pause":
-                device.pause();
+                luxafor.device.pause();
                 status = {message: "paused device"};
                 break;
             case "resume":
-                device.resume();
+                luxafor.device.resume();
                 status = {message: "resumed device"};
                 break;
             case "stop":
-                device.close();
+                luxafor.device.close();
                 status = {message: "stopped device"};
                 break;
             case "start":
-                device = new Luxafor();
+                luxafor = new Luxafor();
                 status = {message: "started device"};
                 break;
         }
