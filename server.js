@@ -51,7 +51,15 @@ router.route('/luxafor')
                 break;
         }
 
-        res.json({status: status.message});
+        if (status) {
+            if (status.message) {
+                res.json({status: status.message});
+            }
+            res.json({status: "success"});
+        } else {
+            res.json({status: "action not supported"});
+        }
+
     });
 
 function setColor(color, target) {
