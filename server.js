@@ -38,13 +38,13 @@ router.route('/luxafor')
                 status = setColor(color, target);
                 break;
             case "fadeTo":
-                status = fadeTo(color, target, speed || 20);
+                status = fadeTo(color, target, speed);
                 break;
             case "flash":
-                status = flash(color, speed || 180, repeat || 5);
+                status = flash(color, speed, repeat);
                 break;
             case "wave":
-                status = wave(color, type ||, speed, repeat);
+                status = wave(color, type, speed, repeat);
                 break;
             case "off":
                 status = off();
